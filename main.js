@@ -27,6 +27,8 @@ createApp({
         }
     },
     methods: {
-
+        deleteItem(index) {
+            this.taskList.splice(index, 1)
+        }
     }
 }).mount('#app')
