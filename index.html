@@ -30,8 +30,9 @@
             <div class="mb-4">
                 <label class="h5" for="">Inserisci nuova Task</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Nuova task">
-                    <button class="btn btn-primary" type="button" id="add">Add</button>
+                    <input v-model="newTask" type="text" class="form-control" placeholder="Nuova task"
+                        v-on:keyup.enter="addNewTask">
+                    <button class="btn btn-primary" type="button" id="add" v-on:click="addNewTask">Add</button>
                 </div>
             </div>
 
@@ -53,11 +54,11 @@
 
                             <!-- Check -->
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                                <input class="form-check-input" type="checkbox" value="" :id=`flexCheckDefault-${index}`
                                     v-model="taskElement.done">
                                 <label class="form-check-label"
                                     v-bind:class="{ 'text-decoration-line-through': taskElement.done == true }"
-                                    for="flexCheckDefault" v-text="taskElement.text">
+                                    :for=`flexCheckDefault-${index}` v-text="taskElement.text">
                                 </label>
                             </div>
 
@@ -66,7 +67,14 @@
 
                         </li>
 
+                        <!-- Empy List -->
+                        <p v-if="taskList.length === 0" class="card-text list-group-item">Nessuna task da completare
+                        </p>
+
                     </ul>
+
+
+
                 </div>
             </div>
 
